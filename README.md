@@ -1,4 +1,4 @@
-# HackerNews Digest
+# Hacker News Digest
 
 Opens up top Hacker News stories and any other sites in browser tabs.
 
