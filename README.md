@@ -1,6 +1,6 @@
-# HackerNews Top Stories Viewer
+# HackerNews Digest
 
-Opens up the top Hacker News stories in browser tabs.
+Opens up top Hacker News stories and any other sites in browser tabs.
 
 # To Run
 
