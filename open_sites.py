@@ -25,7 +25,7 @@ def get_hackernews():
         story_id = str(story_ids[idx])
         response = requests.get(HACKERNEWS_API_URL + 'item/' + story_id + '.json?print=pretty')
         story = response.json()
-        if story['type'] == 'story':
+        if (story['type'] == 'story') and ('url' in story.keys()):
             news.append(story)
     return news    
 
@@ -41,10 +41,11 @@ def add_to_training_data(news):
 
     # add header if new file
     if not os.path.isfile(TRAINING_DATA_PATH):
-        news_df.to_csv(TRAINING_DATA_PATH, header=True)
+        news_df.to_csv(TRAINING_DATA_PATH, header=True, index=False)
     else:
-        news_df.to_csv(f, mode='a', index=False)
-
+        existing_df = pd.read_csv(TRAINING_DATA_PATH)
+        existing_df = existing_df.append(news_df, ignore_index=True)
+        existing_df.to_csv(TRAINING_DATA_PATH, mode='w', index=False)
 
 if __name__ == "__main__":
     open_sites()
